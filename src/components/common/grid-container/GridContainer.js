@@ -1,0 +1,45 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
+import {makeStyles} from '@material-ui/core/styles';
+
+const useStyle = makeStyles(() => ({
+	root: {
+		// border: '1px dashed orange',
+	},
+}));
+
+const GridContainer = ({
+	color,
+	spacing,
+	direction,
+	alignItems,
+	justify,
+	children,
+	...rest,
+}) => {
+	const classes = useStyle();
+
+	return (
+		<Grid
+			container
+			style={{border: `1px solid ${color}`}}
+			spacing={spacing || 0}
+			direction={direction || "row"}
+			alignItems={alignItems || "flex-start"}
+			justify={justify || "flex-start"}
+			className={classes.root}
+		>
+			{children}
+		</Grid>
+	);
+};
+
+GridContainer.propTypes = {
+	spacing: PropTypes.number,
+	direction: PropTypes.string,
+	alignItems: PropTypes.string,
+	justify: PropTypes.string,
+}
+
+export default GridContainer;

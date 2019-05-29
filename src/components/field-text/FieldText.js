@@ -2,8 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Box from '@material-ui/core/Box';
 
-const FieldText = ({id, name, type, value, onChange, label, unit, ...rest}) => {
+const FieldText = ({
+	id,
+	name,
+	type,
+	value,
+	onChange,
+	label,
+	unit,
+	isDisabled,
+	...rest
+}) => {
 
 	const handleChange = e => {
 		const value = e.target.value;
@@ -11,18 +22,21 @@ const FieldText = ({id, name, type, value, onChange, label, unit, ...rest}) => {
 	};
 
 	return (
-		<TextField
-			id={id}
-			name={name}
-			type={type}
-			value={value}
-			onChange={handleChange}
-			variant="outlined"
-			label={label}
-			InputProps={{
-				endAdornment: <InputAdornment position="end">{unit}</InputAdornment>,
-			}}
-		/>
+			<Box width="70%">
+				<TextField
+					id={id}
+					name={name}
+					type={type}
+					value={value}
+					onChange={handleChange}
+					variant="outlined"
+					label={label}
+					disabled={isDisabled ? true : false}
+					InputProps={{
+						endAdornment: <InputAdornment position="end">{unit}</InputAdornment>,
+					}}
+				/>
+			</Box>
 	);
 };
 

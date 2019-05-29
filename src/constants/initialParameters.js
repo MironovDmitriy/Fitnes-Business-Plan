@@ -1,6 +1,6 @@
 const childrensClubValues = [
-	{value: 'club', label: 'Детский клуб'},
-	{value: 'section', label: 'Детские секции'},
+	{value: 'childrensClub', label: 'Детский клуб'},
+	{value: 'childrensSection', label: 'Детские секции'},
 ];
 
 const spaValues = [
@@ -14,8 +14,14 @@ const categories = [
 	{value: 'economical', label: 'Эконом класс'},
 ];
 
+const propertyType = [
+	{value: 'ownership', label: 'В собственности'},
+	{value: 'rent', label: 'Аренда'},
+];
+
 export {
 	childrensClubValues,
 	spaValues,
 	categories,
+	propertyType,
 }

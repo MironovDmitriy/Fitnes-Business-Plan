@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Box from '@material-ui/core/Box';
 
 const FieldCheckbox = ({label, checked, name, onChange, ...rest}) => {
 
@@ -11,14 +12,16 @@ const FieldCheckbox = ({label, checked, name, onChange, ...rest}) => {
 	};
 
 	return (
-		<FormControlLabel
-			control={
-				<Checkbox
-					checked={checked}
-					onChange={handleChange}
-				/>}
-			label={label}
-		/>
+			<Box width="8vw">
+				<FormControlLabel
+					control={
+						<Checkbox
+							checked={checked}
+							onChange={handleChange}
+						/>}
+					label={label}
+				/>
+			</Box>
 	);
 };
 
