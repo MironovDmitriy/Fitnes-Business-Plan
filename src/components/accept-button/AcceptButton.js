@@ -1,23 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
-const FieldContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	margin: 5px 5px 5px 10px;
-	padding: 3px 3px 3px 3px;
-	width: 15vw;
-`
+const styles = {
+	margin: '0 0 0 10px',
+};
 
-const AcceptButton = ({label, name, type, onClick, ...rest}) => {
+const AcceptButton = ({
+	label,
+	name,
+	type,
+	onClick,
+	...rest,
+}) => {
 
 	return (
-		<FieldContainer>
-			<Box>
+			<Box style={styles}>
 				<Button
 					variant={type}
 					color="primary"
@@ -28,7 +27,6 @@ const AcceptButton = ({label, name, type, onClick, ...rest}) => {
 					{label}
 				</Button>
 			</Box>
-		</FieldContainer>
 	);
 };
 
@@ -37,13 +35,6 @@ AcceptButton.propTypes = {
 	name: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
 	onClick: PropTypes.func.isRequired,
-};
-
-AcceptButton.defaultProps = {
-	label: '',
-	name: '',
-	type: '',
-	onClick: () => {},
 };
 
 export default AcceptButton;

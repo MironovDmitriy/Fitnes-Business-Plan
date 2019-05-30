@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import Hidden from '@material-ui/core/Hidden';
 import GridContainer from 'proj/components/common/grid-container';
 import GridRow from 'proj/components/common/grid-row';
 import FieldText from 'proj/components/field-text';
@@ -76,32 +77,40 @@ console.log(newValue);
 
 		return (
 			<GridContainer>
-				<GridContainer xs={12}>
+				<GridContainer>
 					<GridRow xs={12} sm={8} md={6} lg={3} xl={3}>
-						<AccountBalance style={iconStyles} />
-						<FieldText
-							type="number"
-							id="square"
-							name="square"
-							label="Общая площадь"
-							unit="м.кв."
-							value={dataInput.square}
-							onChange={this.onHandleChange}
-						/>
+						<GridContainer>
+							<GridRow>
+								<AccountBalance style={iconStyles} />
+								<FieldText
+									type="number"
+									id="square"
+									name="square"
+									label="Общая площадь"
+									unit="м.кв."
+									value={dataInput.square}
+									onChange={this.onHandleChange}
+								/>
+							</GridRow>
+						</GridContainer>
 					</GridRow>
 					<GridRow xs={12} sm={4} md={6} lg={3} xl={3}>
-						<Build style={iconStyles} />
-						<FieldCheckbox
-							label="Требуется ли ремонт помещения?"
-							name="isRepairRequired"
-							checked={dataInput.isRepairRequired}
-							onChange={this.onHandleChange}
-						/>
+						<GridContainer>
+							<GridRow>
+								<Build style={iconStyles} />
+								<FieldCheckbox
+									label="Требуется ли ремонт помещения?"
+									name="isRepairRequired"
+									checked={dataInput.isRepairRequired}
+									onChange={this.onHandleChange}
+								/>
+							</GridRow>
+						</GridContainer>
 					</GridRow>
 
 					<GridRow xs={12} sm={12} md={12} lg={6} xl={6}>
-						<GridContainer justify="space-around" color="red">
-							<GridRow xs={12} sm={4} md={4} lg={4} xl={4}>
+						<GridContainer justify="space-around" alignItems="center">
+							<GridRow xs={6} sm={4} md={4} lg={4} xl={4}>
 								<Spa style={iconStyles} />
 								<FieldCheckbox
 									label="СПА услуги"
@@ -110,7 +119,7 @@ console.log(newValue);
 									onChange={this.onHandleChange}
 								/>
 							</GridRow>
-							<GridRow xs={12} sm={4} md={4} lg={4} xl={4}>
+							<GridRow xs={6} sm={4} md={4} lg={4} xl={4}>
 								<FieldRadio
 									groupName="spaValue"
 									isDisabled={!dataInput.spa}
@@ -150,30 +159,38 @@ console.log(newValue);
 					</GridRow>
 				</GridContainer>
 
-				<GridContainer xs={12} color="blue">
+				<GridContainer>
 					<GridRow xs={12} sm={8} md={6} lg={3} xl={3}>
-						<People style={iconStyles} />
-						<FieldRadio
-							groupName="category"
-							value={dataInput.category}
-							values={categories}
-							onChange={this.onHandleChange}
-							// helpType="category"
-						/>
+						<GridContainer>
+							<GridRow>
+								<People style={iconStyles} />
+								<FieldRadio
+									groupName="category"
+									value={dataInput.category}
+									values={categories}
+									onChange={this.onHandleChange}
+									// helpType="category"
+								/>
+							</GridRow>
+						</GridContainer>
 					</GridRow>
 
 					<GridRow xs={12} sm={4} md={6} lg={3} xl={3}>
-						<FitnessCenter style={iconStyles} />
-						<FieldCheckbox
-							label="Зона единоборств"
-							name="fighting"
-							checked={dataInput.fighting}
-							onChange={this.onHandleChange}
-						/>
+						<GridContainer>
+							<GridRow>
+								<FitnessCenter style={iconStyles} />
+								<FieldCheckbox
+									label="Зона единоборств"
+									name="fighting"
+									checked={dataInput.fighting}
+									onChange={this.onHandleChange}
+								/>
+							</GridRow>
+						</GridContainer>
 					</GridRow>
 
 					<GridRow sm={12} md={12} lg={6} xl={6}>
-						<GridContainer justify="space-around">
+						<GridContainer justify="space-around" alignItems="center">
 							<GridRow xs={12} sm={4} md={4} lg={4} xl={4}>
 								<Pool style={iconStyles}/>
 								<FieldCheckbox
@@ -211,32 +228,56 @@ console.log(newValue);
 					</GridRow>
 				</GridContainer>
 
-				<GridContainer xs={12}>
+				<GridContainer>
 					<GridRow xs={12} sm={8} md={6} lg={3} xl={3}>
-						<Home style={iconStyles} />
-						<FieldRadio
-							groupName="propertyType"
-							// isDisabled={!dataInput.childrens}
-							value={dataInput.propertyType}
-							values={propertyType}
-							onChange={this.onHandleChange}
-							// helpType={dataInput.childrensValue}
-						/>
+						<GridContainer>
+							<GridRow>
+								<Home style={iconStyles} />
+								<FieldRadio
+									groupName="propertyType"
+									// isDisabled={!dataInput.childrens}
+									value={dataInput.propertyType}
+									values={propertyType}
+									onChange={this.onHandleChange}
+									// helpType={dataInput.childrensValue}
+								/>
+							</GridRow>
+						</GridContainer>
 					</GridRow>
 
 					<GridRow xs={12} sm={4} md={6} lg={3} xl={3}>
-						<LocalBar style={iconStyles} />
-						<FieldCheckbox
-							label="Фитнес бар"
-							name="fitnessBar"
-							checked={dataInput.fitnessBar}
-							onChange={this.onHandleChange}
-						/>
+						<GridContainer>
+							<GridRow>
+								<AccountBalanceWallet style={iconStyles} />
+								{dataInput.propertyType === 'rent' && (
+									<FieldText
+										type="number"
+										id="rentalRate"
+										name="rentalRate"
+										label="Ставка аренды"
+										unit="м/год"
+										value={dataInput.rentalRate}
+										onChange={this.onHandleChange}
+									/>
+								)}
+								{dataInput.propertyType === 'ownership' && (
+									<FieldText
+										type="number"
+										id="propertyCost"
+										name="propertyCost"
+										label="Стоимость имущества"
+										unit="руб."
+										value={dataInput.propertyCost}
+										onChange={this.onHandleChange}
+									/>
+								)}
+							</GridRow>
+						</GridContainer>
 					</GridRow>
 
 					<GridRow xs={12} sm={12} md={12} lg={6} xl={6}>
-						<GridContainer>
-							<GridRow xs={4}>
+						<GridContainer justify="space-around" alignItems="center">
+							<GridRow xs={12} sm={4} md={4} lg={4} xl={4}>
 								<ChildFriendly style={iconStyles}/>
 								<FieldCheckbox
 									label="Детский фитнес"
@@ -245,7 +286,7 @@ console.log(newValue);
 									onChange={this.onHandleChange}
 								/>
 							</GridRow>
-							<GridRow xs={4}>
+							<GridRow xs={12} sm={4} md={4} lg={4} xl={4}>
 								<FieldRadio
 									groupName="childrensValue"
 									isDisabled={!dataInput.childrens}
@@ -255,51 +296,45 @@ console.log(newValue);
 									// helpType={dataInput.childrensValue}
 								/>
 							</GridRow>
-							<GridRow xs={4} />
+							<Hidden xsDown>
+								<GridRow xs={12} sm={4} md={4} lg={4} xl={4} />
+							</Hidden>
 						</GridContainer>
 					</GridRow>
 				</GridContainer>
 
-				<GridContainer xs={12}>
-					<GridRow  xs={12} sm={8} md={6} lg={3} xl={3}>
-						<AccountBalanceWallet style={iconStyles} />
-							{dataInput.propertyType === 'rent' && (
-								<FieldText
-									type="number"
-									id="rentalRate"
-									name="rentalRate"
-									label="Ставка аренды"
-									unit="м/год"
-									value={dataInput.rentalRate}
+				<GridContainer>
+					<GridRow xs={12} sm={8} md={6} lg={3} xl={3}>
+						<GridContainer>
+							<GridRow>
+								<LocalBar style={iconStyles} />
+								<FieldCheckbox
+									label="Фитнес бар"
+									name="fitnessBar"
+									checked={dataInput.fitnessBar}
 									onChange={this.onHandleChange}
 								/>
-							)}
-							{dataInput.propertyType === 'ownership' && (
-								<FieldText
-									type="number"
-									id="propertyCost"
-									name="propertyCost"
-									label="Стоимость имущества"
-									unit="руб."
-									value={dataInput.propertyCost}
-									onChange={this.onHandleChange}
-								/>
-							)}
+							</GridRow>
+						</GridContainer>
 					</GridRow>
 
 					<GridRow xs={12} sm={4} md={6} lg={3} xl={3}>
-						<FilterVintage style={iconStyles} />
-						<FieldCheckbox
-							label="Салон красоты"
-							name="beautyShop"
-							checked={dataInput.beautyShop}
-							onChange={this.onHandleChange}
-						/>
+						<GridContainer justify="space-around" alignItems="center">
+							<GridRow>
+								<FilterVintage style={iconStyles} />
+								<FieldCheckbox
+									label="Салон красоты"
+									name="beautyShop"
+									checked={dataInput.beautyShop}
+									onChange={this.onHandleChange}
+								/>
+							</GridRow>
+						</GridContainer>
 					</GridRow>
 
 					<GridRow  xs={12} sm={12} md={12} lg={6} xl={6}>
-						<GridContainer>
-							<GridRow xs={4}>
+						<GridContainer justify="space-around" alignItems="center">
+							<GridRow xs={12} sm={4} md={4} lg={4} xl={4}>
 								<WbSunny style={iconStyles} />
 								<FieldCheckbox
 									label="Солярий"
@@ -308,7 +343,7 @@ console.log(newValue);
 									onChange={this.onHandleChange}
 								/>
 							</GridRow>
-							<GridRow xs={4}>
+							<GridRow xs={12} sm={4} md={4} lg={4} xl={4}>
 								<FieldText
 									type="number"
 									id="solariumCount"
@@ -320,7 +355,7 @@ console.log(newValue);
 									onChange={this.onHandleChange}
 								/>
 							</GridRow>
-							<GridRow xs={4}>
+							<GridRow xs={12} sm={4} md={4} lg={4} xl={4}>
 								<AcceptButton
 									label="Рассчитать"
 									name="calculate"

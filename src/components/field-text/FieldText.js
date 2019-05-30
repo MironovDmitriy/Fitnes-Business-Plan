@@ -4,6 +4,11 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Box from '@material-ui/core/Box';
 
+const styles = {
+	width: '65%',
+	margin: '0 0 0 10px',
+};
+
 const FieldText = ({
 	id,
 	name,
@@ -13,30 +18,29 @@ const FieldText = ({
 	label,
 	unit,
 	isDisabled,
-	...rest
+	...rest,
 }) => {
-
 	const handleChange = e => {
 		const value = e.target.value;
 		onChange(value, name);
 	};
 
 	return (
-			<Box width="70%">
-				<TextField
-					id={id}
-					name={name}
-					type={type}
-					value={value}
-					onChange={handleChange}
-					variant="outlined"
-					label={label}
-					disabled={isDisabled ? true : false}
-					InputProps={{
-						endAdornment: <InputAdornment position="end">{unit}</InputAdornment>,
-					}}
-				/>
-			</Box>
+		<Box style={styles}>
+			<TextField
+				id={id}
+				name={name}
+				type={type}
+				value={value}
+				onChange={handleChange}
+				variant="outlined"
+				label={label}
+				disabled={isDisabled ? true : false}
+				InputProps={{
+					endAdornment: <InputAdornment position="end">{unit}</InputAdornment>,
+				}}
+			/>
+		</Box>
 	);
 };
 
@@ -48,13 +52,6 @@ FieldText.propTypes = {
 	value: PropTypes.string.isRequired,
 	unit: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
-};
-
-FieldText.defaultProps = {
-	id: '',
-	name: '',
-	value: '',
-	onChange: () => {},
 };
 
 export default FieldText;
