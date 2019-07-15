@@ -28,7 +28,7 @@ import {
 } from 'proj/icons';
 
 const iconStyles = {
-	fontSize: '90px',
+	fontSize: '70px',
 };
 
 export default class DataInput extends PureComponent {

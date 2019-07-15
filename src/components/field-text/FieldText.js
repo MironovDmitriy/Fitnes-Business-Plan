@@ -5,7 +5,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Box from '@material-ui/core/Box';
 
 const styles = {
-	width: '65%',
+	// width: '65%',
+	width: '235px',
 	margin: '0 0 0 10px',
 };
 
@@ -35,7 +36,7 @@ const FieldText = ({
 				onChange={handleChange}
 				variant="outlined"
 				label={label}
-				disabled={isDisabled ? true : false}
+				disabled={isDisabled}
 				InputProps={{
 					endAdornment: <InputAdornment position="end">{unit}</InputAdornment>,
 				}}
@@ -53,5 +54,9 @@ FieldText.propTypes = {
 	unit: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 };
+
+FieldText.defaultProps = {
+	unit: '',
+}
 
 export default FieldText;
